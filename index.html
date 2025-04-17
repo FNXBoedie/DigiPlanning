@@ -15,6 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f3f4f6;
             padding: 2rem;
+            color: #1f2937; /* Slightly darker default text */
         }
 
         .container {
@@ -23,9 +24,10 @@
         }
 
         h1 {
-            font-size: 1.875rem;
+            font-size: 1.875rem; /* 30px */
             font-weight: bold;
             margin-bottom: 2rem;
+            color: #111827; /* Darker heading */
         }
 
         .menu-button {
@@ -40,9 +42,9 @@
 
         .menu-content {
             background: white;
-            padding: 1rem;
-            border-radius: 0.375rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem; /* Slightly more padding */
+            border-radius: 0.5rem; /* Slightly larger radius */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Softer shadow */
             margin-bottom: 2rem;
         }
 
@@ -52,32 +54,54 @@
 
         .input-group {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 0.75rem; /* Slightly larger gap */
+            margin-bottom: 1.25rem; /* More space */
+            align-items: center; /* Align items vertically */
         }
 
-        input {
-            padding: 0.5rem;
+        input[type="text"],
+        input[type="date"],
+        select {
+            padding: 0.6rem 0.8rem; /* Consistent padding */
             border: 1px solid #d1d5db;
             border-radius: 0.375rem;
+            font-size: 0.875rem; /* 14px */
+            flex-grow: 1; /* Allow inputs to grow */
         }
+        input[type="date"]{
+             flex-grow: 0; /* Prevent date input from growing too much */
+        }
+        /* Specific flex adjustments for Gesloten Date Input */
+        .geslotenDate { flex-grow: 0.5; flex-basis: 130px; }
+        .geslotenDateShift { flex-grow: 0.5; flex-basis: 140px; }
+        .geslotenDateActivity { flex-grow: 0.6; flex-basis: 150px; }
+        .geslotenDateDetailText { flex-grow: 1; flex-basis: 180px;} /* Added */
 
         button {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1rem; /* Consistent padding */
             border: none;
             border-radius: 0.375rem;
             cursor: pointer;
+            font-weight: 500; /* Medium font weight */
+            transition: background-color 0.2s ease-in-out; /* Smooth transition */
         }
 
         .btn-add {
-            background: #3b82f6;
+            background: #3b82f6; /* Blue */
             color: white;
+        }
+        .btn-add:hover {
+             background: #2563eb; /* Darker blue */
         }
 
         .btn-delete {
-            background: #ef4444;
+            background: #ef4444; /* Red */
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1rem; /* Kept original padding */
+            flex-shrink: 0; /* Prevent delete button from shrinking */
+        }
+         .btn-delete:hover {
+            background: #dc2626; /* Darker red */
         }
 
         .grid {
@@ -95,101 +119,179 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.9rem;
         }
 
         .week-nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center items horizontally */
             align-items: center;
             margin-bottom: 2rem;
+            gap: 1rem; /* Space between buttons and date picker */
         }
 
         .btn-nav {
-            background: #e5e7eb;
-            color: #374151;
+            background: #e5e7eb; /* Light gray */
+            color: #374151; /* Dark gray text */
+            font-weight: 500;
+        }
+        .btn-nav:hover {
+             background: #d1d5db; /* Darker gray on hover */
         }
 
         .date-picker {
-            padding: 0.5rem;
+            padding: 0.6rem 0.8rem;
             border: 1px solid #d1d5db;
             border-radius: 0.375rem;
             cursor: pointer;
+            text-align: center;
+            background-color: white;
         }
 
         .schedule-container {
-            overflow-x: auto;
+            overflow-x: auto; /* Keep horizontal scroll */
+            background: white; /* Background for the container */
+            border-radius: 0.5rem; /* Match menu radius */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Match menu shadow */
+            padding: 0.5rem; /* Add some padding around the table */
         }
 
         table {
             width: 100%;
-            background: white;
-            border-radius: 0.375rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-collapse: collapse;
+            border-collapse: collapse; /* Keep */
+            border: 1px solid #e5e7eb; /* Add subtle border to table */
+            border-spacing: 0;
         }
 
         th, td {
-            padding: 0.5rem;
+            padding: 0.5rem; /* Keep original narrow padding */
             text-align: left;
             border-bottom: 1px solid #e5e7eb;
+            border-right: 1px solid #e5e7eb; /* Add vertical lines */
+            font-size: 0.875rem; /* Consistent font size */
+            vertical-align: top; /* Align content to top */
         }
+        th:last-child, td:last-child {
+            border-right: none; /* Remove last vertical line */
+        }
+        th {
+            background-color: #f9fafb; /* Very light gray header */
+            font-weight: 600; /* Bold header text */
+            white-space: nowrap; /* Prevent wrapping */
+        }
+        td:first-child { /* Employee name cell */
+            font-weight: 500;
+             white-space: nowrap;
+             position: sticky; /* Make employee name sticky */
+             left: 0;
+             background-color: white; /* Ensure background covers scrolled content */
+             z-index: 1; /* Keep above other cells */
+             border-right: 1px solid #e5e7eb; /* Add border back */
+        }
+         th:first-child { /* Employee header cell */
+             position: sticky; /* Make header sticky too */
+             left: 0;
+             background-color: #f9fafb; /* Match header background */
+             z-index: 2; /* Above employee name and other cells */
+             min-width: 120px;
+             text-align: center;
+         }
+
 
         select {
-            padding: 0.5rem;
+            /* padding: 0.5rem; */ /* Use consistent padding from above */
             border: 1px solid #d1d5db;
             border-radius: 0.375rem;
-            width: 100%;
+            width: 100%; /* Keep */
+            background-color: #fff; /* Ensure select background is white */
+            font-size: 0.875rem;
         }
-        .geslotenDateShift, .geslotenDateActivity {
+
+        /* Removed specific class adjustments for flex in gesloten date input, using general ones now */
+        /* .geslotenDateShift, .geslotenDateActivity {
             width: auto;
             flex: 0.7;
+            flex-grow: 0.5;
         }
         .geslotenDateActivityText {
-            flex: 2;
+            flex: 1.5;
         }
+        .geslotenDate {
+            flex-grow: 0.6;
+        } */
+
 
         .shift-cell {
             display: flex;
-            flex-direction: row;
-            gap: 0.25rem;
+            flex-direction: row; /* Keep side-by-side */
+            gap: 0.25rem; /* Keep original gap */
+            min-width: 200px; /* Ensure minimum width for selects */
         }
 
         .shift-wrapper {
-            flex: 1;
+            flex: 1; /* Each select takes half the space */
+            display: flex;
+            flex-direction: column; /* Stack label and select */
         }
 
         .shift-label {
-            font-size: 0.75rem;
-            color: #6b7280;
-            margin-bottom: 0.25rem;
+            font-size: 0.7rem; /* Smaller label */
+            color: #6b7280; /* Gray label */
+            margin-bottom: 0.1rem;
+            text-transform: capitalize; /* Capitalize 'voormiddag'/'namiddag' */
+            text-align: center;
+             visibility: hidden; /* Hide label by default */
+             height: 0; /* Collapse space */
         }
+         /* Show shift label if needed */
+        .shift-wrapper:first-child .shift-label::before { content: 'VM'; visibility: visible; height: auto; }
+        .shift-wrapper:last-child .shift-label::before { content: 'NM'; visibility: visible; height: auto; }
 
-        select {
-            font-size: 0.875rem;
-        }
+
         .view-toggle {
             display: flex;
+            justify-content: center; /* <<< CENTER BUTTONS */
             gap: 0.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem; /* More space below buttons */
         }
 
         .view-button {
-            background: #e5e7eb;
+            background: #e5e7eb; /* Light gray inactive */
             color: #374151;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem; /* Slightly larger padding */
             border: none;
             border-radius: 0.375rem;
             cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease; /* Smooth transition */
+        }
+        .view-button:hover {
+            background-color: #d1d5db; /* Darker gray on hover */
         }
 
         .view-button.active {
-            background: #4b5563;
+            background: #3b82f6; /* Blue active */
             color: white;
         }
+         .view-button.active:hover {
+             background: #2563eb; /* Darker blue active on hover */
+         }
+
         .employee-button {
-    padding: 0.5rem 1rem;   /* Adjust padding if necessary */
-    width: 110px;           /* Set a fixed width for all buttons */
-    text-align: center;     /* Ensure text is centered */
+            padding: 0.5rem 0; /* Adjust padding */
+            width: 100%; /* Make button fill cell width */
+            max-width: 110px; /* Keep max width if desired */
+            text-align: center;
+            background-color: transparent; /* No background */
+            border: 1px solid transparent; /* Placeholder for border */
+            font-weight: 600; /* Make name bold */
+            color: #1f2937; /* Standard text color */
+            border-radius: 4px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .employee-button:hover {
+            background-color: #f3f4f6; /* Light background on hover */
+            border-color: #d1d5db; /* Subtle border on hover */
         }
     </style>
 </head>
@@ -197,62 +299,51 @@
     <div class="container">
         <h1 style="text-align: center;">DigiPlanning</h1>
 
+        <!-- View Toggle Buttons -->
         <div class="view-toggle">
             <button class="view-button active" data-view="calendar">Kalender</button>
             <button class="view-button" data-view="employee">Werknemers</button>
             <button class="view-button" data-view="location">Locaties</button>
-             <button class="view-button" data-view="gesloten">Gesloten</button>
+            <button class="view-button" data-view="gesloten">Gesloten</button>
         </div>
 
-        
-        
+        <!-- Menu Content (Hidden by default for Calendar view) -->
         <div id="menuContent" class="menu-content" style="display: none;">
             <div id="employeeView" style="display: none;">
+                 <h2>Werknemers Beheren</h2>
+                 <hr style="margin: 1rem 0; border: none; border-top: 1px solid #e5e7eb;">
                 <div class="input-group">
                     <input type="text" id="newEmployeeName" placeholder="Naam Werknemer">
                     <button class="btn-add" onclick="handleAddEmployee()">Toevoegen</button>
                 </div>
-                <h2>Werknemers</h2>
+                <h3>Huidige Werknemers</h3>
                 <div id="employeesList" class="grid"></div>
             </div>
 
             <div id="locationView" style="display: none;">
+                <h2>Locaties Beheren</h2>
+                <hr style="margin: 1rem 0; border: none; border-top: 1px solid #e5e7eb;">
                 <div class="input-group">
                     <input type="text" id="newLocationName" placeholder="Naam Locatie">
                     <button class="btn-add" onclick="handleAddLocation()">Toevoegen</button>
                 </div>
-                <h2>Locaties</h2>
+                 <h3>Huidige Locaties</h3>
                 <div id="locationsList" class="grid"></div>
             </div>
 
            <div id="geslotenView" style="display: none;">
-               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"> <!-- Added margin-bottom -->
-                   <h2>Gesloten Dagen</h2>
-                   <button class="btn-add" onclick="addGeslotenDateInput()">+</button>
+               <h2>Gesloten/Afwezigheden Instellen</h2>
+               <hr style="margin: 1rem 0; border: none; border-top: 1px solid #e5e7eb;">
+                <h3>Specifieke Datum</h3>
+               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                   <p style="font-size: 0.9rem; color: #6b7280;">Voeg datums toe waarop *alle* werknemers afwezig zijn (bv. feestdag, teamoverleg).</p>
+                   <button class="btn-add" onclick="addGeslotenDateInput()" style="padding: 0.4rem 0.6rem; font-size: 1.2rem;">+</button>
                </div>
                <div id="geslotenDateInputs">
-                    <div class="input-group">
-                        <input type="date" class="date-picker geslotenDate">
-                        <select class="geslotenDateShift">
-                            <option value="">Selecteer Shift</option>
-                            <option value="voormiddag">Voormiddag</option>
-                            <option value="namiddag">Namiddag</option>
-                            <option value="beide">Beide</option>
-                        </select>
-                        <select class="geslotenDateActivity">
-                            <option value="">Selecteer Activiteit</option>
-                            <option value="overleg">Overleg</option>
-                            <option value="ziek">Ziek</option>
-                            <option value="verlof">Verlof</option>
-                            <option value="staking">Staking</option>
-                            <option value="opleiding">Opleiding</option>
-                            <option value="feestdag">Feestdag</option>
-                        </select>
-                        <input type="text" class="geslotenDateActivityText" placeholder="Specifieke Activiteit">
-                        <button class="btn-add" onclick="applyGeslotenDate(this.parentNode)">Toepassen</button>
-                        <button class="btn-delete" onclick="deleteGeslotenDateInput(this.parentNode)">Verwijderen</button>
-                    </div>
-                </div>
+                    <!-- Dynamic inputs will be added here -->
+               </div>
+                 <h3 style="margin-top: 2rem;">Terugkerende Weekdag (Overleg)</h3>
+                 <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">Stel een vaste weekdag en shift in voor overleg voor *alle* werknemers.</p>
                  <div class="input-group">
                     <select id="geslotenWeekday">
                         <option value="">Selecteer Weekdag</option>
@@ -267,8 +358,8 @@
                         <option value="voormiddag">Voormiddag</option>
                         <option value="namiddag">Namiddag</option>
                     </select>
-                     <select id="geslotenActivity">                
-                        <option value="overleg">Overleg</option>
+                     <select id="geslotenActivity" disabled> <!-- Fixed to 'Overleg' -->
+                        <option value="overleg" selected>Overleg</option>
                     </select>
                     <button class="btn-add" onclick="applyGesloten()">Toepassen</button>
                     <button class="btn-delete" onclick="removeGesloten()">Verwijderen</button>
@@ -276,165 +367,114 @@
             </div>
         </div>
 
-        <div class="week-nav" style="display: flex; justify-content: center; align-items: center; gap: 1rem;">
-            <button class="btn-nav" onclick="changeWeek(-1)">Vorige Week</button>
-            <input type="date" id="datePicker" class="date-picker" onchange="handleDateChange(this.value)">
-            <button class="btn-nav" onclick="changeWeek(1)">Volgende Week</button>
-        </div>
+        <!-- Calendar View -->
+        <div id="calendarWrapper">
+            <div class="week-nav">
+                <button class="btn-nav" onclick="changeWeek(-1)">◄ Vorige Week</button>
+                <input type="date" id="datePicker" class="date-picker" onchange="handleDateChange(this.value)">
+                <button class="btn-nav" onclick="changeWeek(1)">Volgende Week ►</button>
+            </div>
 
-        <div class="schedule-container">
-            <table>
-                <thead>
-                    <tr id="weekDays">
-                        <th style="text-align: center;">Werknemer</th>
-                        
-                    </tr>
-                </thead>
-                <tbody id="scheduleBody"></tbody>
-            </table>
-        </div>
+            <div class="schedule-container">
+                <table>
+                    <thead>
+                        <tr id="weekDays">
+                            <th>Werknemer</th>  
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                      
+                    </tbody>
+                </table>
+            </div>
+         </div>
     </div>
 
     <script>
         // State management
-        let employees = [];
-        let locations = [];
-        let schedule = {};
+        let employees = [
+            { id: 'emp-bart', name: 'Bart' },
+            { id: 'emp-benjamien', name: 'Benjamien' },
+            { id: 'emp-choman', name: 'Choman' },
+            { id: 'emp-george', name: 'George' },
+            { id: 'emp-johan', name: 'Johan' },
+            { id: 'emp-kay', name: 'Kay' },
+            { id: 'emp-samir', name: 'Samir' },
+            { id: 'emp-siavash', name: 'Siavash' },
+            { id: 'emp-silvie', name: 'Silvie' },
+            { id: 'emp-peter', name: 'Peter' }
+        ];
+        let locations = [
+             { id: 'loc-vlaamsekaai', name: 'VlaKa' },
+            { id: 'loc-toreke', name: 'Toreke' },
+            { id: 'loc-rabot', name: 'WK Rabot' },
+            { id: 'loc-uco', name: 'UCO' }
+        ];
+        let schedule = {}; // Format: schedule[dateString][employeeId][shift] = "locationId" OR "activity" OR "activity: detail"
         let currentWeek = new Date();
         let filteredEmployeeId = null;
         const daysOfWeek = ['Ma', 'Di', 'Wo', 'Do', 'Vr'];
         const shifts = ['voormiddag', 'namiddag'];
+        const standardActivities = ['overleg', 'ziek', 'verlof', 'staking', 'opleiding', 'feestdag'];
 
-        // Menu toggle
-
-        // View toggle
+        // DOM Elements
         const viewButtons = document.querySelectorAll('.view-button');
         const menuContent = document.getElementById('menuContent');
         const employeeView = document.getElementById('employeeView');
         const locationView = document.getElementById('locationView');
         const geslotenView = document.getElementById('geslotenView');
-        const calendarView = document.querySelector('.schedule-container');
-        const weekNav = document.querySelector('.week-nav');
-        const geslotenWeekday = document.getElementById('geslotenWeekday');
-        const geslotenDate = document.getElementById('geslotenDate');
-        const geslotenDateShift = document.getElementById('geslotenDateShift');
-        const geslotenDateActivity = document.getElementById('geslotenDateActivity');
+        const calendarWrapper = document.getElementById('calendarWrapper'); // Container for nav+schedule
         const geslotenDateInputs = document.getElementById('geslotenDateInputs');
 
-        // Initially show the calendar and hide the menu content
+
+        // Initial setup: Show Calendar, hide menu
+        calendarWrapper.style.display = 'block';
         menuContent.style.display = 'none';
-        calendarView.style.display = 'block';
-        weekNav.style.display = 'flex';
 
-        function addGeslotenDateInput() {
-            const newInputGroup = document.createElement('div');
-            newInputGroup.classList.add('input-group');
-            newInputGroup.innerHTML = `
-                <input type="date" class="date-picker geslotenDate">
-                <select class="geslotenDateShift">
-                    <option value="">Selecteer Shift</option>
-                    <option value="voormiddag">Voormiddag</option>
-                    <option value="namiddag">Namiddag</option>
-                    <option value="beide">Beide</option>
-                </select>
-                <select class="geslotenDateActivity">
-                    <option value="">Selecteer Activiteit</option>
-                    <option value="overleg">Overleg</option>
-                    <option value="ziek">Ziek</option>
-                    <option value="verlof">Verlof</option>
-                    <option value="staking">Staking</option>
-                    <option value="opleiding">Opleiding</option>
-                    <option value="feestdag">Feestdag</option>
-                </select>
-                <input type="text" class="geslotenDateActivityText" placeholder="Specifieke Activiteit">
-                <button class="btn-add" onclick="applyGeslotenDate(this.parentNode)">Toepassen</button>
-                <button class="btn-delete" onclick="deleteGeslotenDateInput(this.parentNode)">Verwijderen</button>
-            `;
-            geslotenDateInputs.appendChild(newInputGroup);
-        }
-
-        function deleteGeslotenDateInput(inputGroup) {
-            const dateInput = inputGroup.querySelector('.geslotenDate');
-            const date = dateInput.value;
-             const dateString = formatDate(new Date(date));
-             employees.forEach(emp => {
-                if (schedule[dateString] && schedule[dateString][emp.id]) {
-                    delete schedule[dateString][emp.id];
-                }
-            });
-            inputGroup.remove();
-            renderSchedule();
-        }
-
+        // --- View Toggling ---
         viewButtons.forEach(button => {
             button.addEventListener('click', function() {
                 viewButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 const view = this.dataset.view;
+
+                // Hide all content sections first
+                menuContent.style.display = 'none';
+                employeeView.style.display = 'none';
+                locationView.style.display = 'none';
+                geslotenView.style.display = 'none';
+                calendarWrapper.style.display = 'none';
+
+
+                // Show the selected section
                 if (view === 'employee') {
                     employeeView.style.display = 'block';
-                    menuContent.style.display = 'block';
-                    locationView.style.display = 'none';
-                    calendarView.style.display = 'none';
-                    weekNav.style.display = 'none';
-                     geslotenWeekday.style.display = 'none';
-                     geslotenDate.style.display = 'none';
-                     geslotenDateShift.style.display = 'none';
-                     geslotenDateActivity.style.display = 'none';
+                    menuContent.style.display = 'block'; // Show the container
+                    renderEmployees(); // Re-render list when shown
                 } else if (view === 'location') {
-                    employeeView.style.display = 'none';
                     locationView.style.display = 'block';
-                    menuContent.style.display = 'block';
-                    calendarView.style.display = 'none';
-                    weekNav.style.display = 'none';
-                     geslotenWeekday.style.display = 'none';
-                     geslotenDate.style.display = 'none';
-                     geslotenDateShift.style.display = 'none';
-                     geslotenDateActivity.style.display = 'none';
-                } else if (view === 'calendar') {
-                    employeeView.style.display = 'none';
-                    locationView.style.display = 'none';
-                    menuContent.style.display = 'none';
-                    calendarView.style.display = 'block';
-                    weekNav.style.display = 'flex';
-                    geslotenView.style.display = 'none';
-                     geslotenWeekday.style.display = 'none';
-                     geslotenDate.style.display = 'none';
-                     geslotenDateShift.style.display = 'none';
-                     geslotenDateActivity.style.display = 'none';
+                    menuContent.style.display = 'block'; // Show the container
+                    renderLocations(); // Re-render list when shown
                 } else if (view === 'gesloten') {
-                    employeeView.style.display = 'none';
-                    locationView.style.display = 'none';
-                    menuContent.style.display = 'block';
-                    calendarView.style.display = 'none';
-                    weekNav.style.display = 'none';
-                    geslotenView.style.display = 'block';
-                     geslotenWeekday.style.display = 'block';
-                     geslotenDate.style.display = 'block';
-                     geslotenDateShift.style.display = 'block';
-                     geslotenDateActivity.style.display = 'block';
-                } else {
-                    employeeView.style.display = 'none';
-                    locationView.style.display = 'none';
-                    menuContent.style.display = 'none';
-                    calendarView.style.display = 'none';
-                    weekNav.style.display = 'none';
-                    geslotenView.style.display = 'none';
-                     geslotenWeekday.style.display = 'none';
-                     geslotenDate.style.display = 'none';
-                     geslotenDateShift.style.display = 'none';
-                     geslotenDateActivity.style.display = 'none';
+                     geslotenView.style.display = 'block';
+                     menuContent.style.display = 'block'; // Show the container
+                     // Optionally add existing gesloten dates here if needed for editing
+                } else { // Default to 'calendar'
+                     calendarWrapper.style.display = 'block'; // Show the calendar + nav
+                     renderWeekDays(); // Ensure headers are correct
+                     renderSchedule(); // Ensure schedule is rendered
                 }
             });
         });
 
-        // Helper functions
+
+        // --- Helper functions ---
         function getWeekDates(date) {
             const start = new Date(date);
-            const day = start.getDay();
-            const diff = start.getDate() - day + (day === 0 ? -6 : 1);
+            const day = start.getDay(); // 0 = Sunday, 1 = Monday, ...
+            const diff = start.getDate() - day + (day === 0 ? -6 : 1); // Adjust to Monday
             start.setDate(diff);
-            
+
             return Array.from({ length: 5 }).map((_, i) => {
                 const day = new Date(start);
                 day.setDate(start.getDate() + i);
@@ -443,77 +483,116 @@
         }
 
         function formatDate(date) {
-            return date.toISOString().split('T')[0];
+            // Ensure date is a Date object
+            const d = date instanceof Date ? date : new Date(date);
+             if (isNaN(d.getTime())) {
+                 console.error("Invalid date passed to formatDate:", date);
+                 return null; // Or throw an error
+             }
+            return d.toISOString().split('T')[0];
         }
 
+
         function handleDateChange(value) {
-            currentWeek = new Date(value);
-            renderWeekDays();
-            renderSchedule();
-            updateDatePicker();
+             if (!value) return; // Prevent error if date picker is cleared
+             currentWeek = new Date(value);
+             renderWeekDays();
+             renderSchedule();
+             updateDatePicker();
         }
 
         function updateDatePicker() {
             const datePicker = document.getElementById('datePicker');
-            datePicker.value = formatDate(currentWeek);
-        }
-
-        // Employee management
-        function handleAddEmployee() {
-            const input = document.getElementById('newEmployeeName');
-            const name = input.value.trim();
-            if (name) {
-                const newEmployee = {
-                    id: `emp-${Date.now()}`,
-                    name: name
-                };
-                employees.push(newEmployee);
-                input.value = '';
-                renderEmployees();
-                renderSchedule();
+            const formattedDate = formatDate(currentWeek);
+            if (formattedDate) {
+                datePicker.value = formattedDate;
             }
         }
 
-        function handleDeleteEmployee(id) {
-            employees = employees.filter(emp => emp.id !== id);
-            renderEmployees();
-            renderSchedule();
-        }
+         // --- Employee management ---
+         function handleAddEmployee() {
+             const input = document.getElementById('newEmployeeName');
+             const name = input.value.trim();
+             if (name) {
+                 const newEmployee = {
+                     id: `emp-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`, // More unique ID
+                     name: name
+                 };
+                 employees.push(newEmployee);
+                 // Optional: Sort employees alphabetically
+                 employees.sort((a, b) => a.name.localeCompare(b.name));
+                 input.value = '';
+                 renderEmployees(); // Update list in the menu
+                 renderSchedule(); // Update calendar (if visible)
+             }
+         }
 
-        function renderEmployees() {
-            const list = document.getElementById('employeesList');
-            list.innerHTML = employees.map(emp => `
-                <div class="grid-item">
-                    <span>${emp.name}</span>
-                    <button class="btn-delete" onclick="handleDeleteEmployee('${emp.id}')">Verwijderen</button>
-                </div>
-            `).join('');
-        }
+         function handleDeleteEmployee(id) {
+             // Optional: Add confirmation dialog
+             // if (!confirm(`Weet je zeker dat je ${employees.find(e=>e.id === id)?.name} wilt verwijderen?`)) return;
+             employees = employees.filter(emp => emp.id !== id);
+             // Also remove employee's schedule data (optional, depends on requirements)
+             // Object.keys(schedule).forEach(dateString => {
+             //     delete schedule[dateString][id];
+             //     if (Object.keys(schedule[dateString]).length === 0) {
+             //         delete schedule[dateString];
+             //     }
+             // });
+             renderEmployees();
+             renderSchedule();
+         }
 
-        // Location management
+         function renderEmployees() {
+             const list = document.getElementById('employeesList');
+             if (!list) return; // Only render if the view is active
+             list.innerHTML = employees.map(emp => `
+                 <div class="grid-item">
+                     <span>${emp.name}</span>
+                     <button class="btn-delete" onclick="handleDeleteEmployee('${emp.id}')">Verwijderen</button>
+                 </div>
+             `).join('');
+         }
+
+
+        // --- Location management ---
         function handleAddLocation() {
             const input = document.getElementById('newLocationName');
             const name = input.value.trim();
             if (name) {
                 const newLocation = {
-                    id: `loc-${Date.now()}`,
+                    id: `loc-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`, // More unique ID
                     name: name
                 };
                 locations.push(newLocation);
+                 // Optional: Sort locations alphabetically
+                locations.sort((a, b) => a.name.localeCompare(b.name));
                 input.value = '';
-                renderLocations();
-                renderSchedule();
+                renderLocations(); // Update list in the menu
+                renderSchedule(); // Update calendar select options
             }
         }
 
         function handleDeleteLocation(id) {
+            // Optional: Add confirmation
             locations = locations.filter(loc => loc.id !== id);
+            // Go through schedule and remove/clear entries using this location ID (optional)
+            // Object.keys(schedule).forEach(dateString => {
+            //     Object.keys(schedule[dateString]).forEach(empId => {
+            //         Object.keys(schedule[dateString][empId]).forEach(shift => {
+            //             if (schedule[dateString][empId][shift] === id) {
+            //                 delete schedule[dateString][empId][shift];
+            //                 // Cleanup?
+            //             }
+            //         });
+            //     });
+            // });
             renderLocations();
             renderSchedule();
         }
 
         function renderLocations() {
             const list = document.getElementById('locationsList');
+             if (!list) return; // Only render if the view is active
             list.innerHTML = locations.map(loc => `
                 <div class="grid-item">
                     <span>${loc.name}</span>
@@ -522,116 +601,248 @@
             `).join('');
         }
 
-        function applyGesloten() {
-            const weekday = document.getElementById('geslotenWeekday').value;
-            const shift = document.getElementById('geslotenShift').value;
-            const activity = document.getElementById('geslotenActivity').value;
+        // --- Gesloten/Absence Management ---
 
-            if (!weekday || !shift || !activity) {
-                alert('Please select a weekday, shift, and activity.');
+        function addGeslotenDateInput() {
+            const newInputGroup = document.createElement('div');
+            newInputGroup.classList.add('input-group');
+            newInputGroup.innerHTML = `
+                <input type="date" class="geslotenDate">
+                <select class="geslotenDateShift">
+                    <option value="">Selecteer Shift</option>
+                    <option value="voormiddag">Voormiddag</option>
+                    <option value="namiddag">Namiddag</option>
+                    <option value="beide">Hele Dag</option>
+                </select>
+                <select class="geslotenDateActivity">
+                    <option value="">Selecteer Type</option>
+                    <option value="overleg">Overleg</option>
+                    <option value="ziek">Ziek</option>
+                    <option value="verlof">Verlof</option>
+                    <option value="staking">Staking</option>
+                    <option value="opleiding">Opleiding</option>
+                    <option value="feestdag">Feestdag</option>
+                     <option value="anders">Anders...</option>  
+                </select>
+                <input type="text" class="geslotenDateDetailText" placeholder="Detail (optioneel)"> 
+                <button class="btn-add" onclick="applySingleGeslotenDate(this.parentNode)">Toepassen</button>
+                <button class="btn-delete" onclick="deleteGeslotenDateInput(this.parentNode)">X</button>
+            `;
+            geslotenDateInputs.appendChild(newInputGroup);
+        }
+
+        function applySingleGeslotenDate(inputGroup) {
+            const dateInput = inputGroup.querySelector('.geslotenDate');
+            const shiftSelect = inputGroup.querySelector('.geslotenDateShift');
+            const activitySelect = inputGroup.querySelector('.geslotenDateActivity');
+            const detailInput = inputGroup.querySelector('.geslotenDateDetailText'); // Get the detail input
+
+            const date = dateInput.value;
+            const selectedShift = shiftSelect.value;
+            let activity = activitySelect.value; // Base activity type (e.g., 'feestdag')
+            const detail = detailInput.value.trim(); // Detail text from the new input
+
+            if (!date || !selectedShift) {
+                alert('Selecteer een datum en shift.');
+                return;
+            }
+            if (!activity) {
+                alert('Selecteer een type activiteit.');
+                return;
+            }
+             // No longer need to check for 'anders' specifically for validation here
+
+            const dateString = formatDate(new Date(date));
+             if (!dateString) return; // Invalid date
+
+            let valueToStore = activity;
+            if (detail) {
+                valueToStore = `${activity}: ${detail}`; // Combine activity and detail with a separator
+            }
+
+            console.log(`Applying closed date: ${dateString}, Shift: ${selectedShift}, Value: ${valueToStore}`);
+
+            employees.forEach(emp => {
+                if (!schedule[dateString]) schedule[dateString] = {};
+                if (!schedule[dateString][emp.id]) schedule[dateString][emp.id] = {};
+
+                if (selectedShift === 'beide') {
+                    schedule[dateString][emp.id]['voormiddag'] = valueToStore;
+                    schedule[dateString][emp.id]['namiddag'] = valueToStore;
+                } else {
+                    schedule[dateString][emp.id][selectedShift] = valueToStore;
+                }
+            });
+
+            // Optionally remove the input row after applying, or disable it
+             inputGroup.style.opacity = '0.5'; // Visually indicate it's applied
+             inputGroup.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+             inputGroup.querySelector('.btn-delete').disabled = false; // Keep delete button active
+
+            renderSchedule(); // Update the calendar
+        }
+
+        function deleteGeslotenDateInput(inputGroup) {
+             // Find the data associated with this input to clear it from the schedule
+            const dateInput = inputGroup.querySelector('.geslotenDate');
+            const shiftSelect = inputGroup.querySelector('.geslotenDateShift');
+            const date = dateInput.value;
+            const selectedShift = shiftSelect.value;
+
+             // We don't necessarily know the exact activity/detail stored anymore,
+             // but we can remove based on date/shift for all employees.
+            if (date) {
+                 const dateString = formatDate(new Date(date));
+                 if (dateString) {
+                     console.log(`Removing entries for closed date: ${dateString}, Shift: ${selectedShift}`);
+                     employees.forEach(emp => {
+                         if (schedule[dateString] && schedule[dateString][emp.id]) {
+                             if (selectedShift === 'beide' || selectedShift === 'voormiddag') {
+                                 // Check if the stored value seems to be from a 'gesloten' entry (i.e., not a location ID)
+                                 const vmValue = schedule[dateString][emp.id]['voormiddag'];
+                                 if (vmValue && !locations.some(loc => loc.id === vmValue)) {
+                                      delete schedule[dateString][emp.id]['voormiddag'];
+                                 }
+                             }
+                              if (selectedShift === 'beide' || selectedShift === 'namiddag') {
+                                 const nmValue = schedule[dateString][emp.id]['namiddag'];
+                                  if (nmValue && !locations.some(loc => loc.id === nmValue)) {
+                                     delete schedule[dateString][emp.id]['namiddag'];
+                                  }
+                             }
+                              // Clean up empty employee objects for the date
+                             if (Object.keys(schedule[dateString][emp.id]).length === 0) {
+                                 delete schedule[dateString][emp.id];
+                             }
+                         }
+                     });
+                     // Clean up empty date objects
+                     if (schedule[dateString] && Object.keys(schedule[dateString]).length === 0) {
+                         delete schedule[dateString];
+                     }
+                     renderSchedule(); // Update calendar
+                 }
+            }
+            inputGroup.remove(); // Remove the input row from the DOM
+        }
+
+        function applyGesloten() { // For recurring weekday (Overleg)
+            const weekdaySelect = document.getElementById('geslotenWeekday');
+            const shiftSelect = document.getElementById('geslotenShift');
+            const activity = 'overleg'; // Hardcoded for this section
+
+            const weekday = weekdaySelect.value;
+            const shift = shiftSelect.value;
+
+            if (weekday === "" || shift === "") {
+                alert('Selecteer een weekdag en shift voor het terugkerende overleg.');
                 return;
             }
 
-            const selectedWeekday = parseInt(weekday);
+            const selectedWeekday = parseInt(weekday); // 0=Mon, 1=Tue,...
             const selectedShift = shift;
-            const selectedActivity = activity;
 
-            const startDate = new Date(currentWeek.getFullYear(), 0, 1);
-            const endDate = new Date(currentWeek.getFullYear() + 1, 0, 1);
+            console.log(`Applying recurring ${activity} on weekday ${selectedWeekday}, shift ${selectedShift}`);
 
-            for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
-                const dayOfWeek = date.getDay();
-                 console.log("Date:", date, "Day of week:", dayOfWeek);
-                if (dayOfWeek === selectedWeekday + 2) {
-                    const dateString = formatDate(date);
+            // Apply for the entire current year displayed or a defined range
+            const year = currentWeek.getFullYear();
+            const startDate = new Date(year, 0, 1); // Jan 1st
+            // Find the first occurrence of the selected weekday in the year
+            while (startDate.getDay() !== (selectedWeekday + 1) % 7) { // JS: Sun=0, Mon=1,... -> Planner: Mon=0, Tue=1,... -> Target JS day = (plannerDay + 1)
+                startDate.setDate(startDate.getDate() + 1);
+            }
+
+            const endDate = new Date(year + 1, 0, 1); // Jan 1st of next year
+
+            for (let d = new Date(startDate); d < endDate; d.setDate(d.getDate() + 7)) { // Iterate weekly
+                 // Double check day just in case of DST issues, though less likely with setDate
+                 if (d.getDay() === (selectedWeekday + 1) % 7) {
+                    const dateString = formatDate(d);
+                     if (!dateString) continue;
                     employees.forEach(emp => {
-                        if (!schedule[dateString]) {
-                            schedule[dateString] = {};
-                        }
-                        if (!schedule[dateString][emp.id]) {
-                            schedule[dateString][emp.id] = {};
-                        }
-                        schedule[dateString][emp.id][selectedShift] = selectedActivity;
+                        if (!schedule[dateString]) schedule[dateString] = {};
+                        if (!schedule[dateString][emp.id]) schedule[dateString][emp.id] = {};
+                        // Overwrite only if empty or maybe different activity? For now, overwrite.
+                        schedule[dateString][emp.id][selectedShift] = activity;
                     });
-                }
+                 }
             }
-            
-             const weekDates = getWeekDates(currentWeek);
-            weekDates.forEach(date => {
-                 const dayOfWeek = date.getDay();
-                 console.log("Date:", date, "Day of week:", dayOfWeek);
-                if (dayOfWeek === selectedWeekday + 1) {
-                    const dateString = formatDate(date);
-                     employees.forEach(emp => {
-                        if (!schedule[dateString]) {
-                            schedule[dateString] = {};
-                        }
-                        if (!schedule[dateString][emp.id]) {
-                            schedule[dateString][emp.id] = {};
-                        }
-                         schedule[dateString][emp.id][selectedShift] = selectedActivity;
-                    });
-                }
-            });
-            renderSchedule();
+
+            alert(`Terugkerend overleg toegepast voor ${daysOfWeek[selectedWeekday]} ${selectedShift} voor het jaar ${year}.`);
+            renderSchedule(); // Update the view
         }
 
-        function applyGeslotenDate() {
-            const inputGroups = document.querySelectorAll('#geslotenDateInputs .input-group');
-            inputGroups.forEach(group => {
-                const dateInput = group.querySelector('.geslotenDate');
-                const shiftSelect = group.querySelector('.geslotenDateShift');
-                const activitySelect = group.querySelector('.geslotenDateActivity');
-                const activityText = group.querySelector('.geslotenDateActivityText');
+        function removeGesloten() { // For recurring weekday (Overleg)
+             const weekdaySelect = document.getElementById('geslotenWeekday');
+             const shiftSelect = document.getElementById('geslotenShift');
+             const activity = 'overleg'; // Must match what was applied
 
-                const date = dateInput.value;
-                const shift = shiftSelect.value;
-                const activity = activitySelect.value;
-                const specificActivity = activityText.value.trim();
+             const weekday = weekdaySelect.value;
+             const shift = shiftSelect.value;
 
-                 if (!date || !shift) {
-                    alert('Please select a date and shift.');
-                    return;
-                }
-                 if (!activity && !specificActivity) {
-                    alert('Please select or specify an activity.');
-                    return;
-                }
-                let finalActivity = activity;
-                if (specificActivity) {
-                    finalActivity = specificActivity;
-                }
+             if (weekday === "" || shift === "") {
+                 alert('Selecteer een weekdag en shift om te verwijderen.');
+                 return;
+             }
 
-                const dateString = formatDate(new Date(date));
+             const selectedWeekday = parseInt(weekday);
+             const selectedShift = shift;
 
-                employees.forEach(emp => {
-                    if (!schedule[dateString]) {
-                        schedule[dateString] = {};
-                    }
-                    if (!schedule[dateString][emp.id]) {
-                        schedule[dateString][emp.id] = {};
-                    }
-                    if (shift === 'beide') {
-                        schedule[dateString][emp.id]['voormiddag'] = activity;
-                        schedule[dateString][emp.id]['namiddag'] = activity;
-                    } else {
-                        schedule[dateString][emp.id][shift] = activity;
-                    }
-                });
-            });
-            renderSchedule();
-        }
+             console.log(`Removing recurring ${activity} on weekday ${selectedWeekday}, shift ${selectedShift}`);
 
-        // Schedule management
-        function handleLocationChange(date, employeeId, shift, locationId) {
-            if (!schedule[date]) {
-                schedule[date] = {};
-            }
-            if (!schedule[date][employeeId]) {
-                schedule[date][employeeId] = {};
-            }
-            schedule[date][employeeId][shift] = locationId;
-            renderSchedule();
+             const year = currentWeek.getFullYear();
+             const startDate = new Date(year, 0, 1);
+             // Find the first occurrence
+             while (startDate.getDay() !== (selectedWeekday + 1) % 7) {
+                 startDate.setDate(startDate.getDate() + 1);
+             }
+             const endDate = new Date(year + 1, 0, 1);
+
+             for (let d = new Date(startDate); d < endDate; d.setDate(d.getDate() + 7)) {
+                 if (d.getDay() === (selectedWeekday + 1) % 7) {
+                    const dateString = formatDate(d);
+                    if (!dateString) continue;
+                    employees.forEach(emp => {
+                        if (schedule[dateString]?.[emp.id]?.[selectedShift] === activity) {
+                            delete schedule[dateString][emp.id][selectedShift];
+                             // Cleanup empty objects
+                            if (Object.keys(schedule[dateString][emp.id]).length === 0) {
+                                delete schedule[dateString][emp.id];
+                            }
+                            if (schedule[dateString] && Object.keys(schedule[dateString]).length === 0) {
+                                delete schedule[dateString];
+                            }
+                        }
+                    });
+                 }
+             }
+
+             alert(`Terugkerend overleg verwijderd voor ${daysOfWeek[selectedWeekday]} ${selectedShift} voor het jaar ${year}.`);
+             renderSchedule();
+         }
+
+
+        // --- Schedule management ---
+        function handleLocationChange(dateString, employeeId, shift, value) {
+            if (!schedule[dateString]) schedule[dateString] = {};
+            if (!schedule[dateString][employeeId]) schedule[dateString][employeeId] = {};
+
+             if (value === "") { // User selected "-Selecteer-"
+                 delete schedule[dateString][employeeId][shift];
+                 // Clean up empty objects
+                 if (Object.keys(schedule[dateString][employeeId]).length === 0) {
+                     delete schedule[dateString][employeeId];
+                 }
+                 if (Object.keys(schedule[dateString]).length === 0) {
+                     delete schedule[dateString];
+                 }
+             } else {
+                 // When changing via calendar, we store the direct value (location ID or base activity)
+                 // This overwrites any potential "activity: detail" from the Gesloten section.
+                 schedule[dateString][employeeId][shift] = value;
+             }
+             // No need to re-render schedule immediately, selection is visually updated.
+             // Could add save indicator or debounce saving if needed.
         }
 
         function changeWeek(offset) {
@@ -644,59 +855,110 @@
         function renderWeekDays() {
             const weekDates = getWeekDates(currentWeek);
             const headerRow = document.getElementById('weekDays');
-            headerRow.innerHTML = `
-                <th style="text-align: center;">Werknemer</th>
-                ${weekDates.map((date, index) => `
-                    <th style="text-align: center;">${daysOfWeek[index]} ${date.getDate()}/${date.getMonth() + 1} <br> </th>
-                `).join('')}
+             if (!headerRow) return; // Exit if calendar view isn't active
+
+             headerRow.innerHTML = `
+                <th>Werknemer</th>
+                ${weekDates.map((date, index) => {
+                    const dateString = formatDate(date);
+                    // const isWeekend = date.getDay() === 6 || date.getDay() === 0; // Not currently used
+                    return `<th style="text-align: center; min-width: 220px;">${daysOfWeek[index]}<br>${date.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit' })}</th>`;
+                }).join('')}
             `;
         }
 
         function filterSchedule(employeeId) {
+            const button = document.querySelector(`.employee-button[data-employee-id='${employeeId}']`);
             if (filteredEmployeeId === employeeId) {
-                filteredEmployeeId = null;
+                filteredEmployeeId = null; // Clear filter
+                document.querySelectorAll('.employee-button').forEach(btn => btn.style.fontWeight = '600');
             } else {
-                filteredEmployeeId = employeeId;
+                filteredEmployeeId = employeeId; // Set filter
+                 document.querySelectorAll('.employee-button').forEach(btn => btn.style.fontWeight = 'normal');
+                 if(button) button.style.fontWeight = 'bold'; // Highlight selected employee
             }
-            renderSchedule();
+            renderSchedule(); // Re-render the schedule table body
         }
 
         function renderSchedule() {
             const weekDates = getWeekDates(currentWeek);
             const tbody = document.getElementById('scheduleBody');
-            
+             if (!tbody) return;
+
             let filteredEmployees = employees;
             if (filteredEmployeeId) {
                 filteredEmployees = employees.filter(emp => emp.id === filteredEmployeeId);
             }
 
+            // ---- START: Define Option Strings ----
+            const emptyOptionText = "-Selecteer-";
+            const separatorOptionText = "--- Afwezigheid ---";
+
+            const locationOptions = locations.map(loc =>
+                `<option value="${loc.id}">${loc.name}</option>`
+            ).join('');
+
+            const activityOptionsHTML = `
+                ${separatorOptionText ? `<option disabled>${separatorOptionText}</option>` : ''}
+                ${standardActivities.map(act => `<option value="${act}">${act.charAt(0).toUpperCase() + act.slice(1)}</option>`).join('')}
+            `;
+            // ---- END: Define Option Strings ----
+
+
             tbody.innerHTML = filteredEmployees.map(emp => `
                 <tr>
-                    <td><button class="employee-button" onclick="filterSchedule('${emp.id}')">${emp.name}</button></td>
-                    ${weekDates.map(date => {
+                    <td> 
+                        <button class="employee-button" data-employee-id="${emp.id}" onclick="filterSchedule('${emp.id}')" style="font-weight: ${filteredEmployeeId === emp.id ? 'bold' : '600'};">
+                            ${emp.name}
+                         </button>
+                    </td>
+                    ${weekDates.map((date, dateIndex) => {
                         const dateString = formatDate(date);
+                        if (!dateString) return '<td>Error</td>';
+
                         return `
                             <td>
                                 <div class="shift-cell">
-                                    ${shifts.map(shift => {
-                                        const locationId = schedule[dateString]?.[emp.id]?.[shift] || '';
+                                    ${shifts.map((shift, shiftIndex) => {
+                                        const currentSelection = schedule[dateString]?.[emp.id]?.[shift] || '';
+                                        let valueToSet = ''; // The value to set on the select dropdown
+                                        let baseActivity = '';
+                                        let detail = '';
+                                        let isCustomEntry = false; // Indicates a value not in standard locations or activities
+
+                                        if (locations.some(loc => loc.id === currentSelection)) {
+                                            valueToSet = currentSelection;
+                                        } else if (currentSelection) {
+                                            const parts = currentSelection.split(': ');
+                                            baseActivity = parts[0];
+                                            detail = parts.length > 1 ? parts.slice(1).join(': ') : '';
+
+                                            if (standardActivities.includes(baseActivity)) {
+                                                valueToSet = baseActivity; // Select 'feestdag' even if stored value is 'feestdag: Kerstmis'
+                                            } else {
+                                                // It's not a location, not a standard activity base -> treat as custom text entry
+                                                isCustomEntry = true;
+                                                valueToSet = currentSelection; // The full original string is the value
+                                            }
+                                        }
+                                        // If currentSelection was empty, valueToSet remains ''
+
+                                        // Prepare title attribute for hover info including detail
+                                        let titleText = `${emp.name} - ${daysOfWeek[dateIndex]} ${date.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit' })} - ${shift}`;
+                                        if (detail) {
+                                            titleText += ` (${detail})`;
+                                        } else if (isCustomEntry) {
+                                            titleText += ` (${valueToSet})`; // Show custom entry in title too
+                                        }
+
                                         return `
                                             <div class="shift-wrapper">
-                                                <div class="shift-label"></div>
-                                                <select onchange="handleLocationChange('${dateString}', '${emp.id}', '${shift}', this.value)">
-                                                    <option value="">Locatie</option>
-                                                    ${locations.map(loc => `
-                                                        <option value="${loc.id}" ${locationId === loc.id ? 'selected' : ''}>
-                                                            ${loc.name}
-                                                        </option>
-                                                    `).join('')}
-                                                    <option disabled>---</option>
-                                                    <option value="overleg" ${locationId === 'overleg' ? 'selected' : ''}>Overleg</option>
-                                                    <option value="ziek" ${locationId === 'ziek' ? 'selected' : ''}>Ziek</option>
-                                                    <option value="verlof" ${locationId === 'verlof' ? 'selected' : ''}>Verlof</option>
-                                                    <option value="staking" ${locationId === 'staking' ? 'selected' : ''}>Staking</option>
-                                                    <option value="opleiding" ${locationId === 'opleiding' ? 'selected' : ''}>Opleiding</option>
-                                                     <option value="feestdag" ${locationId === 'feestdag' ? 'selected' : ''}>Feestdag</option>
+                                                 <div class="shift-label" aria-hidden="true">${shift}</div>
+                                                <select onchange="handleLocationChange('${dateString}', '${emp.id}', '${shift}', this.value)" title="${titleText}" data-date="${dateString}" data-employee="${emp.id}" data-shift="${shift}">
+                                                    <option value="">${emptyOptionText}</option>
+                                                    ${locationOptions}
+                                                    ${activityOptionsHTML}                                                   
+                                                    ${isCustomEntry ? `<option value="${valueToSet}">${valueToSet}</option>` : ''}
                                                 </select>
                                             </div>
                                         `;
@@ -707,53 +969,65 @@
                     }).join('')}
                 </tr>
             `).join('');
+
+             // After rendering rows, iterate through the newly created selects and set their values
+             tbody.querySelectorAll('select').forEach(selectElement => {
+                 const dateString = selectElement.dataset.date;
+                 const employeeId = selectElement.dataset.employee;
+                 const shift = selectElement.dataset.shift;
+
+                 if (!dateString || !employeeId || !shift) return;
+
+                 const currentSelection = schedule[dateString]?.[employeeId]?.[shift] || '';
+                 let valueToSet = '';
+
+                if (locations.some(loc => loc.id === currentSelection)) {
+                    valueToSet = currentSelection;
+                } else if (currentSelection) {
+                    const parts = currentSelection.split(': ');
+                    const baseActivity = parts[0];
+
+                    if (standardActivities.includes(baseActivity)) {
+                        valueToSet = baseActivity;
+                    } else { // Custom entry
+                        valueToSet = currentSelection;
+                        // Ensure the option exists (it should have been added during HTML generation)
+                        if (!selectElement.querySelector(`option[value="${CSS.escape(valueToSet)}"]`)) {
+                             console.warn(`Custom option "${valueToSet}" missing for ${employeeId} on ${dateString} (${shift}). Adding dynamically.`);
+                             const opt = document.createElement('option');
+                             opt.value = valueToSet;
+                             opt.text = valueToSet; // Display the full custom text
+                             selectElement.appendChild(opt);
+                        }
+                    }
+                }
+
+                 if (valueToSet) {
+                    selectElement.value = valueToSet;
+                     // Verify selection, log if failed (might happen if location/activity was deleted)
+                     if (selectElement.value !== valueToSet) {
+                         console.warn(`Could not set value "${valueToSet}" for ${employeeId} on ${dateString} (${shift}). Option might be missing (e.g., deleted location/employee). Current value: "${selectElement.value}"`);
+                     }
+                 } else {
+                    selectElement.value = ""; // Ensure it's set to the empty option
+                 }
+             });
         }
 
-        function removeGesloten() {
-            const weekday = document.getElementById('geslotenWeekday').value;
-            const shift = document.getElementById('geslotenShift').value;
 
-            if (!weekday || !shift) {
-                alert('Please select a weekday and shift to remove.');
-                return;
+        // --- Initial Render ---
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDatePicker();
+            // Render calendar view first by default
+            if (document.querySelector('.view-button.active')?.dataset.view === 'calendar') {
+                renderWeekDays();
+                renderSchedule();
             }
+            // Render lists for other views in case they are opened later
+            renderEmployees();
+            renderLocations();
+        });
 
-            const selectedWeekday = parseInt(weekday);
-            const selectedShift = shift;
-
-            const startDate = new Date(currentWeek.getFullYear(), 0, 1);
-            const endDate = new Date(currentWeek.getFullYear() + 1, 0, 1);
-
-            for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
-                const dayOfWeek = date.getDay();
-                if (dayOfWeek === selectedWeekday + 2) {
-                    const dateString = formatDate(date);
-                    employees.forEach(emp => {
-                        if (schedule[dateString] && schedule[dateString][emp.id]) {
-                            delete schedule[dateString][emp.id][selectedShift];
-                        }
-                    });
-                }
-            }
-             const weekDates = getWeekDates(currentWeek);
-            weekDates.forEach(date => {
-                 const dayOfWeek = date.getDay();
-                if (dayOfWeek === selectedWeekday + 1) {
-                    const dateString = formatDate(date);
-                     employees.forEach(emp => {
-                        if (schedule[dateString] && schedule[dateString][emp.id]) {
-                            delete schedule[dateString][emp.id][selectedShift];
-                        }
-                    });
-                }
-            });
-            renderSchedule();
-        }
-
-        // Initial render
-        updateDatePicker();
-        renderWeekDays();
-        renderSchedule();
     </script>
 </body>
 </html>
